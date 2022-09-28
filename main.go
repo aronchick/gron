@@ -167,13 +167,13 @@ func main() {
 	}
 
 	// Pick the appropriate action: gron, ungron, gronValues, or gronStream
-	var a actionFn = gron
+	var a actionFn = Gron
 	if ungronFlag {
 		a = ungron
 	} else if valuesFlag {
 		a = gronValues
 	} else if streamFlag {
-		a = gronStream
+		a = GronStream
 	}
 	exitCode, err := a(rawInput, colorable.NewColorableStdout(), opts)
 
@@ -189,9 +189,9 @@ func main() {
 // code and any error that occurred
 type actionFn func(io.Reader, io.Writer, int) (int, error)
 
-// gron is the default action. Given JSON as the input it returns a list
+// Gron is the default action. Given JSON as the input it returns a list
 // of assignment statements. Possible options are optNoSort and optMonochrome
-func gron(r io.Reader, w io.Writer, opts int) (int, error) {
+func Gron(r io.Reader, w io.Writer, opts int) (int, error) {
 	var err error
 
 	var conv statementconv
@@ -229,10 +229,10 @@ out:
 	return exitOK, nil
 }
 
-// gronStream is like the gron action, but it treats the input as one
+// GronStream is like the gron action, but it treats the input as one
 // JSON object per line. There's a bit of code duplication from the
 // gron action, but it'd be fairly messy to combine the two actions
-func gronStream(r io.Reader, w io.Writer, opts int) (int, error) {
+func GronStream(r io.Reader, w io.Writer, opts int) (int, error) {
 	var err error
 	errstr := "failed to form statements"
 	var i int
