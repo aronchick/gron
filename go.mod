@@ -1,4 +1,4 @@
-module github.com/aronchick/gron
+module github.com/tomnomnom/gron
 
 go 1.15
 
@@ -10,3 +10,5 @@ require (
 	github.com/pkg/errors v0.8.0
 	golang.org/x/sys v0.0.0-20220412211240-33da011f77ad // indirect
 )
+
+replace github.com/tomnomnom/gron => github.com/aronchick/gron latest
